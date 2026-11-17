@@ -36,5 +36,3 @@ A language button switches every screen between Bangla and English.
 |---|---|
 | `Main.dc.html` | The demo screen, built as a Claude Design canvas artboard |
 | `canvas.json` | The canvas layout that holds the artboard |
-
-These two files are the design source. They display inside the Claude Design canvas editor, not when opened directly in a browser.
