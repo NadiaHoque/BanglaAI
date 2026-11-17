@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<title>Alap AI app demo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:#0B6B4F}a:hover{color:#084C38}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4F7F5; color: #10241C; font-family: 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif; font-size: 16px; line-height: 1.45; overflow: hidden">
+
+<header style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px 12px; background: #FFFFFF; border-bottom: 1px solid #DCE5E0">
+<div style="display: flex; flex-direction: column; gap: 0">
+<div style="font-size: 22px; font-weight: 700; color: #0B6B4F; line-height: 1.2">{{t.brand}}</div>
+<div style="font-size: 13px; color: #4B5B54">{{t.brandTag}}</div>
+</div>
+<button type="button" onClick="{{toggleLang}}" aria-label="{{t.switchAria}}" style="min-width: 72px; height: 44px; padding: 0 14px; border: 1px solid #B9C8C0; border-radius: 22px; background: #FFFFFF; font-size: 14px; font-weight: 600; color: #10241C">{{t.switchLang}}</button>
+</header>
+
+<sc-if value="{{isHome}}" hint-placeholder-val="{{true}}">
+<main style="flex: 1; min-height: 0; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px">
+<section style="background: #0B6B4F; color: #FFFFFF; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; color: #D6EBE2">{{t.balanceLabel}}</div>
+<div style="font-size: 36px; font-weight: 700; line-height: 1.1">{{balanceText}}</div>
+</div>
+<button type="button" onClick="{{goWallet}}" style="height: 44px; padding: 0 18px; border: 0; border-radius: 22px; background: #FFFFFF; color: #0B6B4F; font-size: 15px; font-weight: 600">{{t.topUp}}</button>
+</div>
+<div style="font-size: 13px; color: #D6EBE2">{{balanceNote}}</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h1 style="margin: 0; font-size: 19px; font-weight: 600">{{t.helpTitle}}</h1>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<button type="button" onClick="{{openStudent}}" style="text-align: left; min-height: 132px; padding: 16px; border: 1px solid #DCE5E0; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5C5.5 5.5 8.5 5.5 12 7c3.5-1.500 6.500-1.500 9-.5V18c-2.500-1-5.500-1-9 .5-3.500-1.500-6.500-1.500-9-.5z"></path><path d="M12 7v11.500"></path></svg>
+<div style="font-size: 17px; font-weight: 600">{{t.studentTitle}}</div>
+<div style="font-size: 13px; color: #4B5B54">{{t.studentSub}}</div>
+</button>
+<button type="button" onClick="{{openBusiness}}" style="text-align: left; min-height: 132px; padding: 16px; border: 1px solid #DCE5E0; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16l-1.500-5h-13z"></path><path d="M5.500 10v9h13v-9"></path><path d="M10 19v-5h4v5"></path></svg>
+<div style="font-size: 17px; font-weight: 600">{{t.businessTitle}}</div>
+<div style="font-size: 13px; color: #4B5B54">{{t.businessSub}}</div>
+</button>
+<button type="button" onClick="{{openAgri}}" style="text-align: left; min-height: 132px; padding: 16px; border: 1px solid #DCE5E0; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"></path><path d="M12 12c0-4 2.500-6.500 7-7 0 4.500-2.500 7-7 7z"></path><path d="M12 15c0-3-2-5-6-5.500 0 3.500 2 5.500 6 5.500z"></path></svg>
+<div style="font-size: 17px; font-weight: 600">{{t.agriTitle}}</div>
+<div style="font-size: 13px; color: #4B5B54">{{t.agriSub}}</div>
+</button>
+<button type="button" onClick="{{openFounder}}" style="text-align: left; min-height: 132px; padding: 16px; border: 1px solid #DCE5E0; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.500 10.900c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0 0 12 3z"></path></svg>
+<div style="font-size: 17px; font-weight: 600">{{t.founderTitle}}</div>
+<div style="font-size: 13px; color: #4B5B54">{{t.founderSub}}</div>
+</button>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #DCE5E0; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 15px; font-weight: 600">{{t.payInfoTitle}}</div>
+<div style="font-size: 14px; color: #4B5B54">{{t.payInfoBody}}</div>
+</section>
+</main>
+</sc-if>
+
+<sc-if value="{{isChat}}" hint-placeholder-val="{{false}}">
+<main style="flex: 1; min-height: 0; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 20px; background: #FFFFFF; border-bottom: 1px solid #DCE5E0">
+<div style="font-size: 14px; color: #4B5B54">{{t.modelLabel}}</div>
+<sc-for list="{{models}}" as="m" hint-placeholder-count="2">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.pressed}}" style="height: 44px; padding: 0 16px; border-radius: 22px; font-size: 15px; font-weight: 600; border: 2px solid {{m.border}}; background: {{m.bg}}; color: {{m.fg}}">{{m.label}}</button>
+</sc-for>
+<div style="margin-left: auto; font-size: 14px; font-weight: 600; color: #0B6B4F">{{chatBalance}}</div>
+</div>
+
+<div style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column-reverse; gap: 12px; padding: 16px 20px">
+<sc-if value="{{typing}}" hint-placeholder-val="{{false}}">
+<div style="align-self: flex-start; padding: 10px 14px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCE5E0; font-size: 14px; color: #4B5B54">{{t.typing}}</div>
+</sc-if>
+<sc-for list="{{messages}}" as="msg" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; gap: 4px; max-width: 86%; align-self: {{msg.align}}">
+<sc-if value="{{msg.isAi}}" hint-placeholder-val="{{true}}">
+<div style="align-self: flex-start; font-size: 12px; font-weight: 600; color: #7A4306; background: #FDF1DC; border-radius: 8px; padding: 2px 8px">{{msg.tag}}</div>
+</sc-if>
+<div style="padding: 12px 14px; border-radius: 16px; font-size: 16px; white-space: pre-line; background: {{msg.bg}}; color: {{msg.fg}}; border: 1px solid {{msg.border}}">{{msg.text}}</div>
+</div>
+</sc-for>
+<sc-if value="{{chatEmpty}}" hint-placeholder-val="{{false}}">
+<div style="margin: auto 0; text-align: center; font-size: 15px; color: #4B5B54; padding: 24px">{{t.chatEmpty}}</div>
+</sc-if>
+</div>
+
+<sc-if value="{{blocked}}" hint-placeholder-val="{{false}}">
+<div style="margin: 0 20px 8px; padding: 12px 14px; border-radius: 14px; background: #FDF1DC; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="font-size: 14px; color: #5C3204">{{t.lowBal}}</div>
+<button type="button" onClick="{{goWallet}}" style="flex-shrink: 0; height: 44px; padding: 0 14px; border: 0; border-radius: 22px; background: #0B6B4F; color: #FFFFFF; font-size: 14px; font-weight: 600">{{t.topUp}}</button>
+</div>
+</sc-if>
+
+<div style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 20px 8px">
+<sc-for list="{{chips}}" as="chip" hint-placeholder-count="3">
+<button type="button" onClick="{{chip.ask}}" style="flex-shrink: 0; height: 44px; padding: 0 14px; border: 1px solid #B9C8C0; border-radius: 22px; background: #FFFFFF; font-size: 14px; white-space: nowrap; color: #10241C">{{chip.label}}</button>
+</sc-for>
+</div>
+
+<form onSubmit="{{submitDraft}}" style="display: flex; gap: 8px; padding: 8px 20px 12px; background: #FFFFFF; border-top: 1px solid #DCE5E0">
+<input type="text" value="{{draft}}" onChange="{{onDraft}}" aria-label="{{t.inputPlaceholder}}" placeholder="{{t.inputPlaceholder}}" style="flex: 1; min-width: 0; height: 48px; box-sizing: border-box; padding: 0 16px; border: 1px solid #B9C8C0; border-radius: 24px; background: #F4F7F5; font-size: 16px">
+<button type="submit" aria-label="{{t.send}}" style="width: 48px; height: 48px; flex-shrink: 0; border: 0; border-radius: 24px; background: #0B6B4F; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+</button>
+</form>
+</main>
+</sc-if>
+
+<sc-if value="{{isWalletForm}}" hint-placeholder-val="{{false}}">
+<main style="flex: 1; min-height: 0; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+<h1 style="margin: 0; font-size: 22px; font-weight: 700">{{t.walletTitle}}</h1>
+<div style="font-size: 15px; font-weight: 600; color: #0B6B4F">{{t.balanceLabel}} {{balanceText}}</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 4px; background: #E3EBE7; border-radius: 16px">
+<sc-for list="{{payTabs}}" as="tab" hint-placeholder-count="2">
+<button type="button" onClick="{{tab.pick}}" aria-pressed="{{tab.pressed}}" style="height: 44px; border: 0; border-radius: 12px; font-size: 15px; font-weight: 600; background: {{tab.bg}}; color: {{tab.fg}}">{{tab.label}}</button>
+</sc-for>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">{{t.methodTitle}}</h2>
+<sc-for list="{{methods}}" as="method" hint-placeholder-count="2">
+<button type="button" onClick="{{method.pick}}" aria-pressed="{{method.pressed}}" style="text-align: left; min-height: 68px; padding: 12px 16px; border-radius: 16px; display: flex; flex-direction: column; gap: 2px; border: 2px solid {{method.border}}; background: {{method.bg}}">
+<div style="font-size: 16px; font-weight: 600">{{method.label}}</div>
+<div style="font-size: 13px; color: #4B5B54">{{method.sub}}</div>
+</button>
+</sc-for>
+</section>
+
+<sc-if value="{{isPayg}}" hint-placeholder-val="{{true}}">
+<section style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">{{t.amountTitle}}</h2>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{amounts}}" as="amt" hint-placeholder-count="4">
+<button type="button" onClick="{{amt.pick}}" aria-pressed="{{amt.pressed}}" style="height: 52px; border-radius: 14px; font-size: 17px; font-weight: 600; border: 2px solid {{amt.border}}; background: {{amt.bg}}">{{amt.label}}</button>
+</sc-for>
+</div>
+<div style="font-size: 13px; color: #4B5B54">{{t.perMsg}}</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isPack}}" hint-placeholder-val="{{false}}">
+<section style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">{{t.packTitle}}</h2>
+<sc-for list="{{packs}}" as="pack" hint-placeholder-count="2">
+<button type="button" onClick="{{pack.pick}}" aria-pressed="{{pack.pressed}}" style="text-align: left; min-height: 68px; padding: 12px 16px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 2px solid {{pack.border}}; background: {{pack.bg}}">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 16px; font-weight: 600">{{pack.label}}</div>
+<div style="font-size: 13px; color: #4B5B54">{{pack.sub}}</div>
+</div>
+<div style="font-size: 18px; font-weight: 700; color: #0B6B4F">{{pack.price}}</div>
+</button>
+</sc-for>
+<div style="font-size: 13px; color: #4B5B54">{{t.samplePricing}}</div>
+</section>
+</sc-if>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+<button type="button" onClick="{{pay}}" style="height: 52px; border: 0; border-radius: 26px; background: #0B6B4F; color: #FFFFFF; font-size: 17px; font-weight: 600">{{payLabel}}</button>
+<div style="text-align: center; font-size: 13px; color: #4B5B54">{{t.demoNote}}</div>
+</div>
+</main>
+</sc-if>
+
+<sc-if value="{{isWalletDone}}" hint-placeholder-val="{{false}}">
+<main style="flex: 1; min-height: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center">
+<div style="width: 72px; height: 72px; border-radius: 36px; background: #D6EBE2; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.500l4.500 4.500L19 7.500"></path></svg>
+</div>
+<h1 style="margin: 0; font-size: 24px; font-weight: 700">{{doneTitle}}</h1>
+<div style="font-size: 16px; color: #4B5B54">{{doneBody}}</div>
+<div style="font-size: 13px; color: #7A4306; background: #FDF1DC; border-radius: 8px; padding: 4px 10px">{{t.demoNote}}</div>
+<button type="button" onClick="{{startChat}}" style="margin-top: 8px; height: 52px; padding: 0 28px; border: 0; border-radius: 26px; background: #0B6B4F; color: #FFFFFF; font-size: 17px; font-weight: 600">{{t.startChat}}</button>
+<button type="button" onClick="{{closeDone}}" style="height: 44px; padding: 0 20px; border: 0; background: transparent; color: #0B6B4F; font-size: 15px; font-weight: 600">{{t.backToWallet}}</button>
+</main>
+</sc-if>
+
+<nav aria-label="{{t.navAria}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #DCE5E0; padding: 6px 12px 10px">
+<button type="button" onClick="{{goHome}}" style="height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 13px; font-weight: 600; color: {{navHome}}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"></path><path d="M6 10v9h12v-9"></path></svg>
+<span>{{t.navHome}}</span>
+</button>
+<button type="button" onClick="{{goChat}}" style="height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 13px; font-weight: 600; color: {{navChat}}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14v10H10l-5 4z"></path></svg>
+<span>{{t.navChat}}</span>
+</button>
+<button type="button" onClick="{{goWallet}}" style="height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 13px; font-weight: 600; color: {{navWallet}}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h15a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"></path><path d="M4 7l11-3v3"></path><path d="M16 13h1"></path></svg>
+<span>{{t.navWallet}}</span>
+</button>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+state = {
+lang: 'bn', screen: 'home', balance: 25, packActive: false,
+model: 'Claude', msgs: [], asked: [], topic: 'student', typing: false, draft: '',
+payTab: 'payg', method: 'mfs', amount: 50, pack: 'weekly', paid: null
+};
+
+strings(bn) {
+if (bn) return {
+brand: 'আলাপ AI', brandTag: 'আপনার ভাষায়, আপনার টাকায় AI',
+switchLang: 'EN', switchAria: 'ইংরেজিতে দেখুন',
+balanceLabel: 'ব্যালেন্স', topUp: 'টাকা যোগ করুন',
+perMsg: 'প্রতি বার্তা ৳০.৫০ · নমুনা মূল্য', packOn: 'প্যাক চালু আছে · বার্তায় ব্যালেন্স কাটবে না',
+helpTitle: 'আজ কী নিয়ে সাহায্য লাগবে?',
+studentTitle: 'পড়াশোনা', studentSub: 'পড়া বুঝে নিন, প্রশ্নের উত্তর জানুন',
+businessTitle: 'ছোট ব্যবসা', businessSub: 'পোস্ট, হিসাব, ক্রেতার উত্তর',
+agriTitle: 'কৃষি', agriSub: 'ফসল, সার ও রোগ নিয়ে পরামর্শ',
+founderTitle: 'উদ্যোক্তা', founderSub: 'পরিকল্পনা, আবেদন ও নতুন ধারণা',
+payInfoTitle: 'বিদেশি কার্ড লাগবে না', payInfoBody: 'মোবাইল ওয়ালেট বা মোবাইল ব্যালেন্স থেকে টাকায় পরিশোধ করুন।',
+modelLabel: 'মডেল', typing: 'লিখছে…', sampleTag: 'নমুনা উত্তর',
+chatEmpty: 'নিচ থেকে একটি প্রশ্ন বেছে নিন অথবা নিজে লিখুন।',
+lowBal: 'ব্যালেন্স শেষ। চালিয়ে যেতে টাকা যোগ করুন।',
+inputPlaceholder: 'আপনার প্রশ্ন লিখুন', send: 'পাঠান',
+walletTitle: 'ওয়ালেট', tabPayg: 'যত ব্যবহার, তত খরচ', tabPack: 'প্যাক',
+methodTitle: 'কীভাবে টাকা দেবেন?',
+mfs: 'মোবাইল ওয়ালেট', mfsSub: 'মোবাইল আর্থিক সেবার অ্যাকাউন্ট থেকে',
+airtime: 'মোবাইল ব্যালেন্স', airtimeSub: 'আপনার সিমের এয়ারটাইম থেকে',
+amountTitle: 'কত টাকা যোগ করবেন?', packTitle: 'প্যাক বেছে নিন',
+weekly: 'সাপ্তাহিক প্যাক', weeklySub: '৭ দিন বার্তা পাঠান',
+monthly: 'মাসিক প্যাক', monthlySub: '৩০ দিন বার্তা পাঠান',
+samplePricing: 'নমুনা মূল্য', payWord: 'পরিশোধ করুন',
+demoNote: 'ডেমো: কোনো আসল লেনদেন হয় না',
+doneTopUp: 'টাকা যোগ হয়েছে', donePack: 'প্যাক চালু হয়েছে',
+newBal: 'নতুন ব্যালেন্স', packBody: 'এখন বার্তা পাঠালে ব্যালেন্স কাটবে না।',
+startChat: 'চ্যাট শুরু করুন', backToWallet: 'ওয়ালেটে ফিরুন',
+navAria: 'প্রধান মেনু', navHome: 'হোম', navChat: 'চ্যাট', navWallet: 'ওয়ালেট'
+};
+return {
+brand: 'Alap AI', brandTag: 'AI in your language, paid your way',
+switchLang: 'বাংলা', switchAria: 'Switch to Bangla',
+balanceLabel: 'Balance', topUp: 'Add money',
+perMsg: '৳0.50 per message · sample pricing', packOn: 'Pack active · messages do not use your balance',
+helpTitle: 'What do you need help with today?',
+studentTitle: 'Study', studentSub: 'Understand lessons, get answers',
+businessTitle: 'Small business', businessSub: 'Posts, accounts, customer replies',
+agriTitle: 'Farming', agriSub: 'Advice on crops, fertiliser and disease',
+founderTitle: 'Entrepreneurs', founderSub: 'Plans, applications and new ideas',
+payInfoTitle: 'No international card needed', payInfoBody: 'Pay in Taka from your mobile wallet or mobile airtime balance.',
+modelLabel: 'Model', typing: 'Writing…', sampleTag: 'Sample reply',
+chatEmpty: 'Pick a question below or write your own.',
+lowBal: 'Balance is empty. Add money to continue.',
+inputPlaceholder: 'Type your question', send: 'Send',
+walletTitle: 'Wallet', tabPayg: 'Pay as you go', tabPack: 'Packs',
+methodTitle: 'How do you want to pay?',
+mfs: 'Mobile wallet', mfsSub: 'From your mobile financial services account',
+airtime: 'Mobile airtime', airtimeSub: 'From your SIM airtime balance',
+amountTitle: 'How much do you want to add?', packTitle: 'Choose a pack',
+weekly: 'Weekly pack', weeklySub: 'Send messages for 7 days',
+monthly: 'Monthly pack', monthlySub: 'Send messages for 30 days',
+samplePricing: 'Sample pricing', payWord: 'Pay',
+demoNote: 'Demo: no real payment is made',
+doneTopUp: 'Money added', donePack: 'Pack activated',
+newBal: 'New balance', packBody: 'Messages no longer use your balance.',
+startChat: 'Start chatting', backToWallet: 'Back to wallet',
+navAria: 'Main menu', navHome: 'Home', navChat: 'Chat', navWallet: 'Wallet'
+};
+}
+
+prompts() {
+return [
+{ id: 'student',
+q: { bn: 'সালোকসংশ্লেষণ সহজ করে বুঝিয়ে দাও', en: 'Explain photosynthesis simply' },
+a: { bn: 'সালোকসংশ্লেষণ হলো গাছের খাবার তৈরির প্রক্রিয়া।\n\nগাছ সূর্যের আলো, পানি আর বাতাসের কার্বন ডাই-অক্সাইড ব্যবহার করে পাতায় গ্লুকোজ তৈরি করে এবং অক্সিজেন ছেড়ে দেয়।\n\nচাইলে পরীক্ষার জন্য ছোট একটি উত্তর লিখে দিতে পারি।',
+en: 'Photosynthesis is how a plant makes its own food.\n\nThe plant uses sunlight, water and carbon dioxide from the air to make glucose in its leaves, and it releases oxygen.\n\nI can also write a short exam answer if you like.' } },
+{ id: 'business',
+q: { bn: 'আমার কাপড়ের দোকানের জন্য ঈদের ফেসবুক পোস্ট লিখে দাও', en: 'Write an Eid Facebook post for my clothing shop' },
+a: { bn: 'ঈদের আনন্দ এবার আরও রঙিন!\n\nনতুন কালেকশন এসে গেছে আমাদের দোকানে। পরিবারের সবার জন্য পছন্দের পোশাক বেছে নিন আজই।\n\nদোকানের নাম, ঠিকানা আর অফারের কথা জানালে পোস্টে যোগ করে দেব।',
+en: 'Make this Eid more colourful!\n\nOur new collection has arrived. Come and choose outfits for the whole family today.\n\nTell me your shop name, address and offer and I will add them to the post.' } },
+{ id: 'agri',
+q: { bn: 'ধানের পাতা হলুদ হয়ে যাচ্ছে, কী করব?', en: 'My rice leaves are turning yellow. What should I do?' },
+a: { bn: 'ধানের পাতা হলুদ হওয়ার কয়েকটি সাধারণ কারণ আছে: নাইট্রোজেনের ঘাটতি, জমিতে বেশি দিন পানি জমে থাকা, অথবা রোগ বা পোকার আক্রমণ।\n\nকোন পাতা আগে হলুদ হচ্ছে আর জমিতে পানি কেমন আছে জানালে আরও নির্দিষ্ট করে বলতে পারব। সার বা ওষুধ দেওয়ার আগে উপজেলা কৃষি অফিসের পরামর্শ নিন।',
+en: 'Rice leaves often turn yellow for a few common reasons: too little nitrogen, water standing in the field for too long, or disease or pests.\n\nTell me which leaves yellow first and how much water is in the field and I can be more specific. Check with your upazila agriculture office before applying fertiliser or pesticide.' } },
+{ id: 'founder',
+q: { bn: 'ব্যবসার পরিকল্পনা কীভাবে লিখব?', en: 'How do I write a business plan?' },
+a: { bn: 'সহজ একটি ব্যবসার পরিকল্পনায় পাঁচটি অংশ রাখুন:\n\n১. আপনি কী বিক্রি করবেন\n২. ক্রেতা কারা\n৩. খরচ কত হবে\n৪. আয় কীভাবে আসবে\n৫. প্রথম তিন মাসে কী কী করবেন\n\nআপনার ব্যবসার কথা বললে আমি একটি খসড়া লিখে দেব।',
+en: 'A simple business plan has five parts:\n\n1. What you will sell\n2. Who your customers are\n3. What it will cost\n4. How the money comes in\n5. What you will do in the first three months\n\nTell me about your business and I will write a first draft.' } }
+];
+}
+
+money(n, bn, decimals) {
+var s = '৳' + (decimals ? n.toFixed(2) : String(n));
+if (!bn) return s;
+var d = '০১২৩৪৫৬৭৮৯';
+return s.replace(/[0-9]/g, function (c) { return d[Number(c)]; });
+}
+
+sendMessage(q, a) {
+var s = this.state;
+if (s.typing) return;
+if (!s.packActive && s.balance < 0.5) return;
+var self = this;
+var model = s.model;
+this.setState({
+balance: s.packActive ? s.balance : Math.round((s.balance - 0.5) * 100) / 100,
+msgs: s.msgs.concat([{ from: 'user', bn: q.bn, en: q.en }]),
+typing: true, draft: ''
+});
+setTimeout(function () {
+self.setState({
+msgs: self.state.msgs.concat([{ from: 'ai', bn: a.bn, en: a.en, model: model }]),
+typing: false
+});
+}, 900);
+}
+
+renderVals() {
+var self = this;
+var s = this.state;
+var bn = s.lang === 'bn';
+var t = this.strings(bn);
+var green = '#0B6B4F', line = '#B9C8C0', tint = '#E7F3EE', white = '#FFFFFF', ink = '#10241C', muted = '#4B5B54';
+var sel = function (on) { return { border: on ? green : line, bg: on ? tint : white, pressed: on ? 'true' : 'false' }; };
+var blocked = !s.packActive && s.balance < 0.5;
+
+var prompts = this.prompts();
+var ordered = prompts.filter(function (p) { return p.id === s.topic; })
+.concat(prompts.filter(function (p) { return p.id !== s.topic; }))
+.filter(function (p) { return s.asked.indexOf(p.id) < 0; });
+var chips = ordered.map(function (p) {
+return { label: bn ? p.q.bn : p.q.en, ask: function () {
+if (self.state.typing) return;
+if (!self.state.packActive && self.state.balance < 0.5) return;
+self.setState({ asked: self.state.asked.concat([p.id]) });
+self.sendMessage(p.q, p.a);
+} };
+});
+
+var messages = s.msgs.map(function (m) {
+var user = m.from === 'user';
+return {
+text: bn ? m.bn : m.en, isAi: !user,
+tag: user ? '' : t.sampleTag + ' · ' + m.model,
+align: user ? 'flex-end' : 'flex-start',
+bg: user ? green : white, fg: user ? white : ink, border: user ? green : '#DCE5E0'
+};
+}).reverse();
+
+var generic = {
+bn: 'এটি একটি ডেমো। আসল অ্যাপে আপনার প্রশ্ন বেছে নেওয়া মডেলের কাছে যাবে এবং উত্তর বাংলায় আসবে।',
+en: 'This is a demo. In the live app your question goes to the model you chose and the answer comes back in Bangla.'
+};
+
+var open = function (topic) { return function () { self.setState({ topic: topic, screen: 'chat' }); }; };
+var packPrice = s.pack === 'weekly' ? 49 : 149;
+var payAmount = s.payTab === 'payg' ? s.amount : packPrice;
+
+return {
+t: t,
+isHome: s.screen === 'home',
+isChat: s.screen === 'chat',
+isWalletForm: s.screen === 'wallet' && !s.paid,
+isWalletDone: s.screen === 'wallet' && !!s.paid,
+isPayg: s.payTab === 'payg', isPack: s.payTab === 'pack',
+balanceText: this.money(s.balance, bn, true),
+balanceNote: s.packActive ? t.packOn : t.perMsg,
+chatBalance: s.packActive ? t.tabPack : this.money(s.balance, bn, true),
+blocked: blocked, typing: s.typing, chatEmpty: s.msgs.length === 0 && !s.typing,
+draft: s.draft, messages: messages, chips: chips,
+navHome: s.screen === 'home' ? green : muted,
+navChat: s.screen === 'chat' ? green : muted,
+navWallet: s.screen === 'wallet' ? green : muted,
+models: ['Claude', 'ChatGPT'].map(function (m) {
+var on = s.model === m;
+return { label: m, pressed: on ? 'true' : 'false', border: on ? green : line, bg: on ? green : white, fg: on ? white : ink,
+pick: function () { self.setState({ model: m }); } };
+}),
+payTabs: [{ id: 'payg', label: t.tabPayg }, { id: 'pack', label: t.tabPack }].map(function (x) {
+var on = s.payTab === x.id;
+return { label: x.label, pressed: on ? 'true' : 'false', bg: on ? white : 'transparent', fg: on ? green : ink,
+pick: function () { self.setState({ payTab: x.id }); } };
+}),
+methods: [{ id: 'mfs', label: t.mfs, sub: t.mfsSub }, { id: 'airtime', label: t.airtime, sub: t.airtimeSub }].map(function (x) {
+var v = sel(s.method === x.id);
+return { label: x.label, sub: x.sub, border: v.border, bg: v.bg, pressed: v.pressed,
+pick: function () { self.setState({ method: x.id }); } };
+}),
+amounts: [20, 50, 100, 200].map(function (n) {
+var v = sel(s.amount === n);
+return { label: self.money(n, bn, false), border: v.border, bg: v.bg, pressed: v.pressed,
+pick: function () { self.setState({ amount: n }); } };
+}),
+packs: [{ id: 'weekly', label: t.weekly, sub: t.weeklySub, price: 49 }, { id: 'monthly', label: t.monthly, sub: t.monthlySub, price: 149 }].map(function (x) {
+var v = sel(s.pack === x.id);
+return { label: x.label, sub: x.sub, price: self.money(x.price, bn, false), border: v.border, bg: v.bg, pressed: v.pressed,
+pick: function () { self.setState({ pack: x.id }); } };
+}),
+payLabel: t.payWord + ' · ' + this.money(payAmount, bn, false),
+doneTitle: s.paid === 'pack' ? t.donePack : t.doneTopUp,
+doneBody: s.paid === 'pack' ? t.packBody : t.newBal + ' ' + this.money(s.balance, bn, true),
+toggleLang: function () { self.setState({ lang: bn ? 'en' : 'bn' }); },
+goHome: function () { self.setState({ screen: 'home', paid: null }); },
+goChat: function () { self.setState({ screen: 'chat', paid: null }); },
+goWallet: function () { self.setState({ screen: 'wallet', paid: null }); },
+openStudent: open('student'), openBusiness: open('business'), openAgri: open('agri'), openFounder: open('founder'),
+onDraft: function (e) { self.setState({ draft: e.target.value }); },
+submitDraft: function (e) {
+if (e && e.preventDefault) e.preventDefault();
+var text = (self.state.draft || '').trim();
+if (!text) return;
+self.sendMessage({ bn: text, en: text }, generic);
+},
+pay: function () {
+if (self.state.payTab === 'payg') self.setState({ balance: Math.round((self.state.balance + self.state.amount) * 100) / 100, paid: 'topup' });
+else self.setState({ packActive: true, paid: 'pack' });
+},
+startChat: function () { self.setState({ screen: 'chat', paid: null }); },
+closeDone: function () { self.setState({ paid: null }); }
+};
+}
+}
+</script>
+</body>
+</html>
